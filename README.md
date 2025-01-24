@@ -13,3 +13,6 @@ This conjecture has been open with minimal progress for about fifty years. There
 
 # Goal of computation
 All of the models the were built with these programs were used to build examples from which theorems about the Union-closed polytope could be derived. Essentially, the models found facets of the polytope in low dimensions that I proved existed in some form for the general polytope. Finding facets which were easily interpretable combinatorially or significantly diminished the gap between linear relaxation and the integral polytope were the ideal.
+
+# Warning on complexity
+Finding the integer hull of a polytope is an NP-Hard problem. Additionally finding the first Chvatal closure of a polytope is NP-Hard and we must go through this process several times. Finally, the problem is transformed into a MIP by taking variables in the powerset of our base. In other words, the union closed polytope is a $2^n$ dimensional polytope with the number of vertices potentially on the order of $2^2^n$. This is all to say that this is a computationally hard problem and the results obtained here are meant to serve as a springboard for non-computational work.
