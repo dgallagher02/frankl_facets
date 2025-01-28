@@ -16,3 +16,6 @@ All of the models the were built with these programs were used to build examples
 
 # Warning on complexity
 Finding the integer hull of a polytope is an NP-Hard problem. Additionally finding the first Chvatal closure of a polytope is NP-Hard and we must go through this process several times. Finally, the problem is transformed into a MIP by taking variables in the powerset of our base. In other words, the union closed polytope is a $2^n$ dimensional polytope with the number of vertices potentially on the order of $2^{2^n}$. This is all to say that this is a computationally hard problem and the results obtained here are meant to serve as a springboard for non-computational work.
+
+# Disclaimer - Gurobi account needed
+To run the LPs and MIPs you will need a gurobi account (free if at a university). However, the UCPolytope functionality still works and you can perform the manipulations without gurobi. You can use a free solver, but they don't work as well.

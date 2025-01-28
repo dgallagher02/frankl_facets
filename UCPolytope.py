@@ -75,7 +75,7 @@ class UCPolytope:
         for family in families:
             v = [0] * (2**self.base + 1)
             for i in range(len(family)):
-                ind = self.powerset.index(subset)
+                ind = self.powerset.index(family[i])
                 if union_closed and i == 2:
                     v[ind] = -1
                 else:
@@ -84,16 +84,30 @@ class UCPolytope:
                 v[-1] = 1
             else:
                 v[-1] = self.max_occurence
+            res.append(v)
         return res
 
-    
-def union_tuple(a, b):
-    res = []
-    for x in a:
-        print('union', x)
-        res.append(x)
-    for y in b:
-        if y not in res:
-            res.append(y)
-    res = sorted(res)
-    return res
+    def vect_to_pset(self, vect):
+        v_pset = {}
+        for i in range(len(self.powerset)):
+            v_pset[self.powerset[i]] = vect[i]
+        return v_pset
+
+
+
+    def is_union_closed(self, vect):
+        for i in range(len(vect) - 1):
+            if vect[i] == 0:
+                pass
+            else:
+                vpi = self.powerset[i]
+                for j in range(i, len(vect)):
+                    if vect[j] != 0:
+                        vpj = self.powerset[j]
+                        vpij = set(vpi).union(set(vpj))
+                        if vect[self.powerset.index(tuple(vpij))] == 0:
+                            print(self.powerset.index(tuple(vpij)))
+                            print(vpi,vpj,vpij)
+                            return False
+        return True
+

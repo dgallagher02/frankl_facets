@@ -34,6 +34,39 @@ class TestUCPolytope(unittest.TestCase):
         shape = UCPolytope(4,4)
         self.assertEqual(len(shape.less_than_max_occurence()), 4)
 
+    def test_build_constraints_uc(self):
+        shape = UCPolytope(3,3)
+        uc = shape.union_closed_ab()
+        vectors = shape.build_constraints(uc, union_closed = True)
+        check = [0,1,1,0,-1,0,0,0,1] in vectors
+        self.assertEqual(check, True)
+
+    def test_build_constraints_max_occ(self):
+        shape = UCPolytope(3,3)
+        uc = shape.less_than_max_occurence()
+        vectors = shape.build_constraints(uc, max_occ = True)
+        check = [0,1,0,0,1,1,0,1,3] in vectors
+        self.assertEqual(check, True)
+
+    def test_build_constraints_max_occ2(self):
+        shape = UCPolytope(3,3)
+        uc = shape.less_than_max_occurence()
+        vectors = shape.build_constraints(uc, max_occ = True)
+        check = [0,0,1,0,1,0,1,1,3] in vectors
+        self.assertEqual(check, True)
+
+    def test_build_constraints_max_occ34(self):
+        shape = UCPolytope(3,4)
+        uc = shape.less_than_max_occurence()
+        vectors = shape.build_constraints(uc, max_occ = True)
+        check = [0,0,1,0,1,0,1,1,4] in vectors
+        self.assertEqual(check, True)
+
+    def test_is_union_closed(self):
+        shape = UCPolytope(3,3)
+        vect = [0, -1, -2, -1, -1, -1, 1, 1]
+        self.assertEqual(shape.is_union_closed(vect), True)
+
 
 
 if __name__ == "__main__":
